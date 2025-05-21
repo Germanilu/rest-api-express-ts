@@ -1,6 +1,7 @@
 import express from 'express';
 import router from './router';
 import db from './config/db';
+import colors from 'colors'
 
 //Creo una instancia de la app de express 
 const server = express();
@@ -13,10 +14,10 @@ async function connectDB(){
     try {
         await db.authenticate()
         db.sync()
-        console.log('conecxion exitosa a la DB')
+        console.log(colors.magenta('conecxion exitosa a la DB'))
     } catch (error) {
-        console.log(error)
-        console.log("Hubo un error al conectar al DB")
+        // console.log(error)
+        console.log(colors.bgRed.white("Hubo un error al conectar al DB"))
     }
 }
 connectDB()
