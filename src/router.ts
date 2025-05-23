@@ -6,7 +6,7 @@ import { handleInputErrors } from './middleware'
 // Creo una instancia del router
 const router = Router()
 
-// ========== RUTAS ==========//
+// ========== ENDPOINT ==========//
 router.get('/', getProducts);
 
 router.get('/:id',

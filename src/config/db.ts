@@ -6,7 +6,9 @@ dotenv.config()
 
 // Conexion al db, se le añade al final de la url ?ssl=true para que no de error al conectar(ver .env)
 const db = new Sequelize(process.env.DATABASE_URL!, {
-    models: [__dirname + '/../models/**/*.ts']
+    models: [__dirname + '/../models/**/*.ts'],
+    //Evita enviar mensajes a la consola
+    logging:false
 })
 
 export default db;
