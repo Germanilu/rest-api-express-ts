@@ -2,7 +2,6 @@ import request from 'supertest';
 import server from '../../server';
 
 describe('POST /api/products', () => {
-
     it('Should Display Validation Error', async () => {
         //Conecto al sv y hago un post a la url /api/product enviandole el body VACIO
         const response = await request(server).post('/api/products').send({})
@@ -56,6 +55,24 @@ describe('POST /api/products', () => {
 
         expect(response.status).not.toBe(400)
         expect(response.status).not.toBe(404)
+        expect(response.body).not.toHaveProperty('errors')
+    })
+})
+
+describe('GET /api/products', () => {
+
+    it('Should check if api/products URL exist', async () => {
+        const response = await request(server).get('/api/products')
+        expect(response.status).not.toBe(404)
+    })
+
+    it('GET a JSON response with products', async() => {
+        const response = await request(server).get('/api/products')
+        expect(response.status).toBe(200)
+        expect(response.headers['content-type']).toMatch(/json/)
+        expect(response.body).toHaveProperty('data')
+        expect(response.body.data).toHaveLength(1)
+
         expect(response.body).not.toHaveProperty('errors')
     })
 })
