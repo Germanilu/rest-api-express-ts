@@ -1,5 +1,6 @@
 # Ignora la carpeta de dependencias
 node_modules/
+coverage/
 
 # Ignora archivos compilados de TypeScript
 dist/

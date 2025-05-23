@@ -3,49 +3,37 @@ import Product from '../models/Product.model'
 
 
 export const getProducts = async (req: Request,res: Response) => {
-    try {
-        //Hago una consulta a la BBDD y añado ordenacion/limite/atributos a la consulta SQL
-        const products = await Product.findAll({
-            order: [
-                ['price','DESC']
-            ],
-            limit:2,
-            attributes:{exclude:['createdAt', 'updatedAt']}
-        })
-        res.json({data: products})
-    } catch (error) {
-        console.log(error)
-    }
+    //Hago una consulta a la BBDD y añado ordenacion/limite/atributos a la consulta SQL
+    const products = await Product.findAll({
+        order: [
+            ['price','DESC']
+        ],
+        limit:2,
+        attributes:{exclude:['createdAt', 'updatedAt']}
+    })
+    res.json({data: products})
 }
 
 
 export const getProductById = async (req: Request,res: Response) => {
-    try {
-        //Obtengo el producto
-        const {id} = req.params
-        const product = await Product.findByPk(id)
-        //Reviso que exista
-        if(!product){
-            res.status(404).json({
-                error: 'Producto no Encontrado'
-            })
-            return 
-        }
-        res.json({data:product})
-    } catch (error) {
-        console.log(error)
+    //Obtengo el producto
+    const {id} = req.params
+    const product = await Product.findByPk(id)
+    //Reviso que exista
+    if(!product){
+        res.status(404).json({
+            error: 'Producto no Encontrado'
+        })
+        return 
     }
+    res.json({data:product})
 }
 
 
  export const createProduct = async (req: Request,res: Response) => {
-    try {
-        const product = await Product.create(req.body)
-        //La creacion retorna siempre un estado 201
-        res.status(201).json({data:product})
-    } catch (error) {
-        console.log(error)
-    }
+    const product = await Product.create(req.body)
+    //La creacion retorna siempre un estado 201
+    res.status(201).json({data:product})
 }
 
 
