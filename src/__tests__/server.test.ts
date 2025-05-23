@@ -26,5 +26,9 @@ describe('GET /api', () => {
         expect(res.headers['content-type']).toMatch(/json/)
         //Me espero que el mensaje del body que devuelve sea "Desde API"
         expect(res.body.msg).toBe('Desde API')
+
+        //Aqui tambien pruebo lo contrario, que la respuesta NO sea un 404 y que el texto NO sea "desde api"
+        expect(res.status).not.toBe(404)
+        expect(res.body.msg).not.toBe("desde api")
     })
 })
