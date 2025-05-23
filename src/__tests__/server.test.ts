@@ -14,6 +14,8 @@
 
 import request from 'supertest';
 import server from '../server';
+import { connectDB } from '../server';
+import db from '../config/db';
 
 describe('GET /api', () => {
     it('Should send back a json response', async () => {
@@ -30,5 +32,29 @@ describe('GET /api', () => {
         //Aqui tambien pruebo lo contrario, que la respuesta NO sea un 404 y que el texto NO sea "desde api"
         expect(res.status).not.toBe(404)
         expect(res.body.msg).not.toBe("desde api")
+    })
+})
+
+
+/**
+ * Con esto puedo testear el fallo al conectarse a la base de datos. 
+ * Fuerzo una simulacion de fallo con jest.mock cuando se conecta al DB 
+ */
+
+//Creo el Mock y importo la configuracion
+jest.mock('../config/db')
+
+describe('connectDB', () => {
+    it('Should handle database connection error', async () => {
+        //Creo una spy y espero que se ejecute el catch forzando la ejecucion 
+        jest.spyOn(db,'authenticate').mockRejectedValueOnce(new Error('Hubo un error al conectar al DB'))
+        //Creo un segundo spy que espera al console.log del catch y lo añade a una constante
+        const consoleSpy = jest.spyOn(console,'log')
+        //Llamo la conexion a la db una vez tenga creados los spy
+        await connectDB()
+
+        expect(consoleSpy).toHaveBeenCalledWith(
+            expect.stringContaining('Hubo un error al conectar al DB')
+        )
     })
 })
