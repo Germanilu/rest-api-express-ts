@@ -1,4 +1,4 @@
-import {Table, Column, Model, DataType} from 'sequelize-typescript';
+import {Table, Column, Model, DataType, Default} from 'sequelize-typescript';
 
 @Table({
     tableName: 'products'
@@ -13,10 +13,11 @@ class Product extends Model {
     name:string
 
     @Column({
-        type:DataType.FLOAT(6,2)
+        type:DataType.FLOAT
     })
     price:number
 
+    @Default(true)
     @Column({
         type: DataType.BOOLEAN
     })
