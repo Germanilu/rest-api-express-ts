@@ -19,6 +19,7 @@ A RESTful API for product management built with **Node.js**, **Express**, and **
 ## 📁 Project Structure
 
 src/
+
 ├── config/ # Database configuration
 
 ├── handlers/ # Route controllers
