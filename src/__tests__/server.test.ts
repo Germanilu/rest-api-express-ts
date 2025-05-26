@@ -12,28 +12,8 @@
 //     })
 // })
 
-import request from 'supertest';
-import server from '../server';
 import { connectDB } from '../server';
 import db from '../config/db';
-
-describe('GET /api', () => {
-    it('Should send back a json response', async () => {
-        //Hago una request al server con supertest y recupero el endpoint /api. En res se almacenan todos los datos del servidor
-        const res = await request(server).get('/api')
-
-        //Me espero que res.status devuelva 200
-        expect(res.status).toBe(200)
-        //Me espero que en el content-type de los headers exista json
-        expect(res.headers['content-type']).toMatch(/json/)
-        //Me espero que el mensaje del body que devuelve sea "Desde API"
-        expect(res.body.msg).toBe('Desde API')
-
-        //Aqui tambien pruebo lo contrario, que la respuesta NO sea un 404 y que el texto NO sea "desde api"
-        expect(res.status).not.toBe(404)
-        expect(res.body.msg).not.toBe("desde api")
-    })
-})
 
 
 /**
