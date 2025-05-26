@@ -5,6 +5,7 @@ import colors from 'colors'
 import swaggerSpec from './config/swagger';
 import swaggerUi from 'swagger-ui-express'
 import cors, {CorsOptions} from 'cors'
+import morgan from 'morgan'
 
 //Conectar base de datos
 export async function connectDB(){
@@ -39,6 +40,8 @@ server.use(cors(corsOptions))
 server.use(express.json())
 server.use(express.urlencoded({ extended: true })); // esto también suma
 
+//Sirve para registrar en consola las peticiones y obtener informacion
+server.use(morgan('dev'))
 
 // ========== Rutas ==========//
 //Registro un conjunto de rutas(paths) bajo /api/products. 
