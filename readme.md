@@ -20,13 +20,21 @@ A RESTful API for product management built with **Node.js**, **Express**, and **
 
 src/
 ├── config/ # Database configuration
+
 ├── handlers/ # Route controllers
+
 ├── middleware/ # Custom middlewares
+
 ├── models/ # Sequelize model definitions
+
 ├── routes/ # Endpoints and Swagger documentation
+
 ├── index.ts # Main entry point
+
 ├── server.ts # Express server configuration
+
 ├── swagger.ts # Swagger JSDoc configuration
+
 tests/ # Automated tests
 
 ---
