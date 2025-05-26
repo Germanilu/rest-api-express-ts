@@ -45,8 +45,8 @@ tests/ # Automated tests
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/rest_api_node_ts_server.git
-cd rest_api_node_ts_server
+git clone https://github.com/Germanilu/rest-api-express-ts
+cd rest-api-express-ts
 
 # Install dependencies
 npm install
