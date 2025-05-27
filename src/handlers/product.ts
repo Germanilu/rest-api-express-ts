@@ -8,7 +8,7 @@ export const getProducts = async (req: Request,res: Response) => {
         order: [
             ['price','DESC']
         ],
-        limit:2,
+        limit:20,
         attributes:{exclude:['createdAt', 'updatedAt']}
     })
     res.json({data: products})
